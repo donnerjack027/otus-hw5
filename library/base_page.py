@@ -3,6 +3,8 @@
 """
 base page
 """
+from library.waiters import wait_for_element
+
 
 class BasePage:
     """
@@ -16,6 +18,7 @@ class BasePage:
         :param driver: browser web driver
         :param some_keys: keys we want to send
         """
+        wait_for_element(driver, locator)
         driver.find_element(*locator).send_keys(some_keys)
 
     @staticmethod
@@ -25,6 +28,7 @@ class BasePage:
         :param driver: browser web driver
         :param locator: object locator
         """
+        wait_for_element(driver, locator)
         driver.find_element(*locator).click()
 
     @staticmethod
@@ -36,6 +40,7 @@ class BasePage:
         :param attribute: object attribute
         :param attribute_value: object attribute value
         """
+        wait_for_element(driver, locator)
         buttons = driver.find_elements(*locator)
         for button in buttons:
             data = button.get_attribute(str(attribute))
@@ -61,4 +66,5 @@ class BasePage:
         :param driver: browser web driver
         :param locator: object locator
         """
+        wait_for_element(driver, locator)
         driver.find_element(*locator).clear()

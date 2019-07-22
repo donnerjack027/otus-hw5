@@ -16,6 +16,7 @@ def start_browser(request):
     """
     browser = request.config.getoption("--browser")
     address = request.config.getoption("--address")
+    timeout = request.config.getoption("--timeout")
     if browser == "chrome":
         path = 'common/drivers/chromedriver'
         options = Chrome()
@@ -31,6 +32,6 @@ def start_browser(request):
         sys.exit(1)
     driver.maximize_window()
     driver.get(address)
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(int(timeout))
     request.addfinalizer(driver.quit)
     return driver
