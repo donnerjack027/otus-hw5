@@ -1,0 +1,49 @@
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+"""
+keywords page
+"""
+
+from library.pages.product_page import ProductPage
+from library.pages.main_page import MainPage
+from library.pages.admin_page import AdminPage
+
+
+def authorize_as_admin(driver, login, password):
+    """
+    Keyword - auth as admin
+    """
+    AdminPage.login_input(driver, login)
+    AdminPage.password_input(driver, password)
+    AdminPage.accept_button_click(driver)
+    MainPage.message_close_button_click(driver)
+
+
+def add_new_product(driver, product_name, meta_tag, model):
+    """
+    Keyword - add product
+    """
+    MainPage.open_product_catalog(driver)
+    MainPage.click_product_button(driver)
+    ProductPage.add_new_product_button_click(driver)
+    ProductPage.input_product_name(driver, product_name)
+    ProductPage.input_meta_tag(driver, meta_tag)
+    ProductPage.data_tab_click(driver)
+    ProductPage.input_model(driver, model)
+    ProductPage.save_new_product_button_click(driver)
+
+
+def filter_products_by_name(driver, product_name):
+    """
+    Keyword - filter product by name
+    """
+    ProductPage.input_product_name_to_filter(driver, product_name)
+    ProductPage.click_filter_button(driver)
+
+
+def delete_all_products(driver):
+    """
+    Keyword - del all products
+    """
+    ProductPage.click_choose_all_products_checkbox(driver)
+    ProductPage.click_delete_all_products_button(driver)

@@ -13,7 +13,6 @@ def start_browser(request):
     """
     Setup and run
     :param request: pytest request
-    :param browser: name of browser that will start
     """
     browser = request.config.getoption("--browser")
     address = request.config.getoption("--address")
