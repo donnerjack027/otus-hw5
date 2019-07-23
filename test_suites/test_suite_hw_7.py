@@ -6,8 +6,10 @@ Test Suite - homework 7
 
 import pytest
 from library.keywords import authorize_as_admin, add_new_product, \
-    filter_products_by_name, delete_all_products
+    filter_products_by_name, delete_all_products, \
+    add_new_product_with_images, delete_images_from_opencart
 from library.pages.product_page import ProductPage
+from library.pages.main_page import MainPage
 
 
 class TestSuiteHw6:
@@ -82,5 +84,34 @@ class TestSuiteHw6:
         for product in products:
             assert "Edited test product" in product.text
         filter_products_by_name(driver, product_name="Edited test product")
+        delete_all_products(driver)
+        ProductPage.accept_product_delete(driver)
+
+    @staticmethod
+    @pytest.mark.ignore
+    @pytest.mark.positive
+    def test004(start_browser):
+        """
+        Test type - positive
+        Create new product with 3 img
+        :param start_browser: browser run
+        """
+        driver = start_browser
+        images_names = ("1", "2", "3")
+        jpg_names = list()
+        for name in images_names:
+            jpg_names.append(str(name)+".jpg")
+        authorize_as_admin(driver, login="admin", password="admin")
+        add_new_product_with_images(driver,
+                                    product_name="Test product",
+                                    meta_tag="Test meta tag",
+                                    model="Test model",
+                                    images_path="/home/vasiliev_va/Downloads/special/",
+                                    file_names=jpg_names)
+        ProductPage.check_images_names(driver, images_names)
+        delete_images_from_opencart(driver, file_names=jpg_names)
+        MainPage.open_product_catalog(driver)
+        MainPage.click_product_button(driver)
+        filter_products_by_name(driver, product_name="Test product")
         delete_all_products(driver)
         ProductPage.accept_product_delete(driver)
