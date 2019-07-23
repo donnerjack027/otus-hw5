@@ -4,11 +4,11 @@
 keywords page
 """
 
-import time
 from library.pages.product_page import ProductPage
 from library.pages.main_page import MainPage
 from library.pages.admin_page import AdminPage
 from library.constructor_menu import ConstructorMenu
+from library.pages.downloads_page import DownloadsPage
 
 
 def authorize_as_admin(driver, login, password):
@@ -99,7 +99,17 @@ def add_new_menu_field(driver):
     Keyword - add new menu
     """
     MainPage.click_design_menu(driver)
-    time.sleep(5)
     MainPage.click_menu_constructor(driver)
-    time.sleep(5)
     ConstructorMenu.drug_computer_drop_components(driver)
+
+
+def add_file_to_opencart(driver, file_url, file_name):
+    """
+    Keyword - add file to opencart
+    """
+    MainPage.open_product_catalog(driver)
+    MainPage.click_downloads_button(driver)
+    DownloadsPage.click_add_new_file(driver)
+    DownloadsPage.input_download_file_name(driver, file_name)
+    DownloadsPage.download_file(driver, file_url)
+    DownloadsPage.check_downloaded_file(driver, file_name)

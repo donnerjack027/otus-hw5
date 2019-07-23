@@ -8,10 +8,11 @@ import pytest
 from library.keywords import authorize_as_admin, add_new_product, \
     filter_products_by_name, delete_all_products, \
     add_new_product_with_images, delete_images_from_opencart, \
-    demo_authorize, add_new_menu_field
+    demo_authorize, add_new_menu_field, add_file_to_opencart
 from library.pages.product_page import ProductPage
 from library.pages.main_page import MainPage
 from library.constructor_menu import ConstructorMenu
+from library.pages.downloads_page import DownloadsPage
 
 
 class TestSuiteHw6:
@@ -118,6 +119,7 @@ class TestSuiteHw6:
         ProductPage.accept_product_delete(driver)
 
     @staticmethod
+    @pytest.mark.skip(reason="Special for https://demo23.opencart.pro")
     @pytest.mark.positive
     def test005(start_browser):
         """
@@ -129,3 +131,19 @@ class TestSuiteHw6:
         demo_authorize(driver, login="demo", password="demo")
         add_new_menu_field(driver)
         ConstructorMenu.check_computer_element(driver)
+
+    @staticmethod
+    @pytest.mark.ignore
+    @pytest.mark.positive
+    def test006(start_browser):
+        """
+        Test type - positive
+        Add new file to downloads menu
+        :param start_browser: browser run
+        """
+        driver = start_browser
+        file_url = "/home/vasiliev_va/Downloads/special/1.jpg"
+        authorize_as_admin(driver, login="admin", password="admin")
+        add_file_to_opencart(driver, file_url, file_name="Test file")
+        DownloadsPage.select_downloaded_file(driver)
+        DownloadsPage.delete_selected_file(driver)

@@ -51,3 +51,11 @@ class MainPage(BasePage):
         :param driver: browser web driver
         """
         BasePage.click_on_object(driver, locator=Locators.menu_constructor_locator)
+
+    @staticmethod
+    def click_downloads_button(driver):
+        """
+        Click on downloads button in the catalog
+        :param driver: browser web driver
+        """
+        BasePage.click_on_object(driver, locator=Locators.downloads_menu_products_locator)
