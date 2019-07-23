@@ -3,6 +3,7 @@
 """
 base page
 """
+from selenium.webdriver.common.action_chains import ActionChains
 from library.waiters import wait_for_element
 
 
@@ -86,3 +87,16 @@ class BasePage:
                 button.click()
             else:
                 continue
+
+    @staticmethod
+    def drug_and_drop_element(driver, source_locator, target_locator):
+        """
+        Drug an element and drop it to other element
+        :param driver: browser web driver
+        :param source_locator: locator of source element
+        :param target_locator: locator of drop target element
+        """
+        source_element = driver.find_element(source_locator)
+        target_element = driver.find_element(target_locator)
+        action = ActionChains(driver).drag_and_drop(source_element, target_element)
+        action.perform()

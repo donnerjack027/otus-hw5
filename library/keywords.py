@@ -4,9 +4,11 @@
 keywords page
 """
 
+import time
 from library.pages.product_page import ProductPage
 from library.pages.main_page import MainPage
 from library.pages.admin_page import AdminPage
+from library.constructor_menu import ConstructorMenu
 
 
 def authorize_as_admin(driver, login, password):
@@ -17,6 +19,15 @@ def authorize_as_admin(driver, login, password):
     AdminPage.password_input(driver, password)
     AdminPage.accept_button_click(driver)
     MainPage.message_close_button_click(driver)
+
+
+def demo_authorize(driver, login, password):
+    """
+    Keyword - auth as admin on demo23.opencart.pro
+    """
+    AdminPage.login_input(driver, login)
+    AdminPage.password_input(driver, password)
+    AdminPage.accept_button_click(driver)
 
 
 def add_new_product(driver, product_name, meta_tag, model):
@@ -81,3 +92,14 @@ def delete_images_from_opencart(driver, file_names):
     ProductPage.choose_remove_images_by_names(driver, file_names)
     ProductPage.delete_selected_images(driver)
     ProductPage.close_add_image_menu()
+
+
+def add_new_menu_field(driver):
+    """
+    Keyword - add new menu
+    """
+    MainPage.click_design_menu(driver)
+    time.sleep(5)
+    MainPage.click_menu_constructor(driver)
+    time.sleep(5)
+    ConstructorMenu.drug_computer_drop_components(driver)

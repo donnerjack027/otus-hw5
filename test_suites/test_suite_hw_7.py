@@ -7,9 +7,11 @@ Test Suite - homework 7
 import pytest
 from library.keywords import authorize_as_admin, add_new_product, \
     filter_products_by_name, delete_all_products, \
-    add_new_product_with_images, delete_images_from_opencart
+    add_new_product_with_images, delete_images_from_opencart, \
+    demo_authorize, add_new_menu_field
 from library.pages.product_page import ProductPage
 from library.pages.main_page import MainPage
+from library.constructor_menu import ConstructorMenu
 
 
 class TestSuiteHw6:
@@ -88,7 +90,6 @@ class TestSuiteHw6:
         ProductPage.accept_product_delete(driver)
 
     @staticmethod
-    @pytest.mark.ignore
     @pytest.mark.positive
     def test004(start_browser):
         """
@@ -115,3 +116,16 @@ class TestSuiteHw6:
         filter_products_by_name(driver, product_name="Test product")
         delete_all_products(driver)
         ProductPage.accept_product_delete(driver)
+
+    @staticmethod
+    @pytest.mark.positive
+    def test005(start_browser):
+        """
+        Test type - positive
+        add new menu field and drug and drop it
+        :param start_browser: browser run
+        """
+        driver = start_browser
+        demo_authorize(driver, login="demo", password="demo")
+        add_new_menu_field(driver)
+        ConstructorMenu.check_computer_element(driver)
