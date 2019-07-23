@@ -13,6 +13,7 @@ from library.pages.product_page import ProductPage
 from library.pages.main_page import MainPage
 from library.constructor_menu import ConstructorMenu
 from library.pages.downloads_page import DownloadsPage
+from library.logger import web_logging, proxy_logging
 
 
 class TestSuiteHw6:
@@ -26,8 +27,7 @@ class TestSuiteHw6:
         Add new product
         :param start_browser: browser run
         """
-        driver = start_browser
-
+        driver, proxy = start_browser
         authorize_as_admin(driver, login="admin", password="admin")
         add_new_product(driver,
                         product_name="Test product",
@@ -39,6 +39,8 @@ class TestSuiteHw6:
             assert "Test product" in product.text
         delete_all_products(driver)
         ProductPage.accept_product_delete(driver)
+        proxy_logging(proxy)
+        web_logging(driver)
 
     @staticmethod
     @pytest.mark.positive
@@ -48,7 +50,7 @@ class TestSuiteHw6:
         Delete product
         :param start_browser: browser run
         """
-        driver = start_browser
+        driver, proxy = start_browser
         authorize_as_admin(driver, login="admin", password="admin")
         add_new_product(driver,
                         product_name="Test product",
@@ -61,6 +63,8 @@ class TestSuiteHw6:
         products = ProductPage.find_product_name(driver)
         for product in products:
             assert "Test product" not in product.text
+        proxy_logging(proxy)
+        web_logging(driver)
 
     @staticmethod
     @pytest.mark.positive
@@ -70,7 +74,7 @@ class TestSuiteHw6:
         Edit product
         :param start_browser: browser run
         """
-        driver = start_browser
+        driver, proxy = start_browser
         authorize_as_admin(driver, login="admin", password="admin")
         add_new_product(driver,
                         product_name="Test product",
@@ -89,6 +93,8 @@ class TestSuiteHw6:
         filter_products_by_name(driver, product_name="Edited test product")
         delete_all_products(driver)
         ProductPage.accept_product_delete(driver)
+        proxy_logging(proxy)
+        web_logging(driver)
 
     @staticmethod
     @pytest.mark.positive
@@ -98,7 +104,7 @@ class TestSuiteHw6:
         Create new product with 3 img
         :param start_browser: browser run
         """
-        driver = start_browser
+        driver, proxy = start_browser
         images_names = ("1", "2", "3")
         jpg_names = list()
         for name in images_names:
@@ -117,6 +123,8 @@ class TestSuiteHw6:
         filter_products_by_name(driver, product_name="Test product")
         delete_all_products(driver)
         ProductPage.accept_product_delete(driver)
+        proxy_logging(proxy)
+        web_logging(driver)
 
     @staticmethod
     @pytest.mark.skip(reason="Special for https://demo23.opencart.pro")
@@ -127,13 +135,14 @@ class TestSuiteHw6:
         add new menu field and drug and drop it
         :param start_browser: browser run
         """
-        driver = start_browser
+        driver, proxy = start_browser
         demo_authorize(driver, login="demo", password="demo")
         add_new_menu_field(driver)
         ConstructorMenu.check_computer_element(driver)
+        proxy_logging(proxy)
+        web_logging(driver)
 
     @staticmethod
-    @pytest.mark.ignore
     @pytest.mark.positive
     def test006(start_browser):
         """
@@ -141,9 +150,11 @@ class TestSuiteHw6:
         Add new file to downloads menu
         :param start_browser: browser run
         """
-        driver = start_browser
+        driver, proxy = start_browser
         file_url = "/home/vasiliev_va/Downloads/special/1.jpg"
         authorize_as_admin(driver, login="admin", password="admin")
         add_file_to_opencart(driver, file_url, file_name="Test file")
         DownloadsPage.select_downloaded_file(driver)
         DownloadsPage.delete_selected_file(driver)
+        proxy_logging(proxy)
+        web_logging(driver, log_file='web_log.log')

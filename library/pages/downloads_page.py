@@ -3,7 +3,7 @@
 """
 downloads page
 """
-import logging
+import logging as log
 from pynput.keyboard import Key, Controller
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
@@ -61,7 +61,7 @@ class DownloadsPage(BasePage):
         try:
             driver.find_element(By.XPATH, "//*[contains(text(), '{}')]".format(file_name))
         except NoSuchElementException:
-            logging.error("There are no files with name:%s", file_name)
+            log.error("There are no files with name:%s", file_name)
 
     @staticmethod
     def select_downloaded_file(driver):
