@@ -40,9 +40,15 @@ def start_browser(request):
         #                                                executable_path=path,
         #                                                desired_capabilities=des_cap),
         #                               OpencartListener())
-        command_executor = 'http://192.168.102.28:4444/wd/hub'
+        # command_executor = 'http://192.168.102.28:4444/wd/hub'
+        # driver = EventFiringWebDriver(webdriver.Remote(command_executor,
+        #                                                desired_capabilities={"browserName": "chrome"}),
+        #                               OpencartListener())
+        command_executor = 'http://donnerjack1:BTEizVzLqorX3SxBVyiB@hub.browserstack.com:80/wd/hub'
         driver = EventFiringWebDriver(webdriver.Remote(command_executor,
-                                                       desired_capabilities={"browserName": "chrome"}),
+                                                       desired_capabilities={"browserName": "chrome",
+                                                                             'os': 'Windows',
+                                                                             'os_version': '10'}),
                                       OpencartListener())
     elif browser == "firefox":
         des_cap = DesiredCapabilities.FIREFOX
@@ -54,9 +60,15 @@ def start_browser(request):
         # driver = EventFiringWebDriver(webdriver.Firefox(options=options,
         #                                                 executable_path=path),
         #                               OpencartListener())
-        command_executor = 'http://192.168.102.28:4444/wd/hub'
+        # command_executor = 'http://192.168.102.28:4444/wd/hub'
+        # driver = EventFiringWebDriver(webdriver.Remote(command_executor,
+        #                                                desired_capabilities={"browserName": "firefox"}),
+        #                               OpencartListener())
+        command_executor = 'http://donnerjack1:BTEizVzLqorX3SxBVyiB@hub.browserstack.com:80/wd/hub'
         driver = EventFiringWebDriver(webdriver.Remote(command_executor,
-                                                       desired_capabilities={"browserName": "firefox"}),
+                                                       desired_capabilities={"browserName": "firefox",
+                                                                             'os': 'Windows',
+                                                                             'os_version': '10'}),
                                       OpencartListener())
     else:
         print('Bad wolf')
