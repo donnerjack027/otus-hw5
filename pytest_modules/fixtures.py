@@ -36,20 +36,23 @@ def start_browser(request):
         options = Chrome()
         options.headless = False
         options.add_argument(argument='--proxy-server={0}'.format(url))
-        # driver = EventFiringWebDriver(webdriver.Chrome(options=options,
-        #                                                executable_path=path,
-        #                                                desired_capabilities=des_cap),
-        #                               OpencartListener())
+        # --- Without Grid --- #
+        driver = EventFiringWebDriver(webdriver.Chrome(options=options,
+                                                       executable_path=path,
+                                                       desired_capabilities=des_cap),
+                                      OpencartListener())
+        # --- Locale Grid --- #
         # command_executor = 'http://192.168.102.28:4444/wd/hub'
         # driver = EventFiringWebDriver(webdriver.Remote(command_executor,
         #                                                desired_capabilities={"browserName": "chrome"}),
         #                               OpencartListener())
-        command_executor = 'http://donnerjack1:BTEizVzLqorX3SxBVyiB@hub.browserstack.com:80/wd/hub'
-        driver = EventFiringWebDriver(webdriver.Remote(command_executor,
-                                                       desired_capabilities={"browserName": "chrome",
-                                                                             'os': 'Windows',
-                                                                             'os_version': '10'}),
-                                      OpencartListener())
+        # --- Remote Grid --- #
+        # command_executor = 'http://donnerjack1:BTEizVzLqorX3SxBVyiB@hub.browserstack.com:80/wd/hub'
+        # driver = EventFiringWebDriver(webdriver.Remote(command_executor,
+        #                                                desired_capabilities={"browserName": "chrome",
+        #                                                                      'os': 'Windows',
+        #                                                                      'os_version': '10'}),
+        #                               OpencartListener())
     elif browser == "firefox":
         des_cap = DesiredCapabilities.FIREFOX
         des_cap['loggingPrefs'] = {'performance': 'ALL'}
@@ -57,19 +60,22 @@ def start_browser(request):
         options = Firefox()
         options.headless = False
         options.add_argument(argument='--proxy-server={0}'.format(url))
-        # driver = EventFiringWebDriver(webdriver.Firefox(options=options,
-        #                                                 executable_path=path),
-        #                               OpencartListener())
+        # --- Without Grid --- #
+        driver = EventFiringWebDriver(webdriver.Firefox(options=options,
+                                                        executable_path=path),
+                                      OpencartListener())
+        # --- Locale Grid --- #
         # command_executor = 'http://192.168.102.28:4444/wd/hub'
         # driver = EventFiringWebDriver(webdriver.Remote(command_executor,
         #                                                desired_capabilities={"browserName": "firefox"}),
         #                               OpencartListener())
-        command_executor = 'http://donnerjack1:BTEizVzLqorX3SxBVyiB@hub.browserstack.com:80/wd/hub'
-        driver = EventFiringWebDriver(webdriver.Remote(command_executor,
-                                                       desired_capabilities={"browserName": "firefox",
-                                                                             'os': 'Windows',
-                                                                             'os_version': '10'}),
-                                      OpencartListener())
+        # --- Remote Grid --- #
+        # command_executor = 'http://donnerjack1:BTEizVzLqorX3SxBVyiB@hub.browserstack.com:80/wd/hub'
+        # driver = EventFiringWebDriver(webdriver.Remote(command_executor,
+        #                                                desired_capabilities={"browserName": "firefox",
+        #                                                                      'os': 'Windows',
+        #                                                                      'os_version': '10'}),
+        #                               OpencartListener())
     else:
         print('Bad wolf')
         sys.exit(1)
