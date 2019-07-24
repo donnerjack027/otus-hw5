@@ -36,9 +36,13 @@ def start_browser(request):
         options = Chrome()
         options.headless = False
         options.add_argument(argument='--proxy-server={0}'.format(url))
-        driver = EventFiringWebDriver(webdriver.Chrome(options=options,
-                                                       executable_path=path,
-                                                       desired_capabilities=des_cap),
+        # driver = EventFiringWebDriver(webdriver.Chrome(options=options,
+        #                                                executable_path=path,
+        #                                                desired_capabilities=des_cap),
+        #                               OpencartListener())
+        command_executor = 'http://192.168.102.28:4444/wd/hub'
+        driver = EventFiringWebDriver(webdriver.Remote(command_executor,
+                                                       desired_capabilities={"browserName": "chrome"}),
                                       OpencartListener())
     elif browser == "firefox":
         des_cap = DesiredCapabilities.FIREFOX
@@ -47,8 +51,12 @@ def start_browser(request):
         options = Firefox()
         options.headless = False
         options.add_argument(argument='--proxy-server={0}'.format(url))
-        driver = EventFiringWebDriver(webdriver.Firefox(options=options,
-                                                        executable_path=path),
+        # driver = EventFiringWebDriver(webdriver.Firefox(options=options,
+        #                                                 executable_path=path),
+        #                               OpencartListener())
+        command_executor = 'http://192.168.102.28:4444/wd/hub'
+        driver = EventFiringWebDriver(webdriver.Remote(command_executor,
+                                                       desired_capabilities={"browserName": "firefox"}),
                                       OpencartListener())
     else:
         print('Bad wolf')
