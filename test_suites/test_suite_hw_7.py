@@ -14,7 +14,8 @@ from library.pages.product_page import ProductPage
 from library.pages.main_page import MainPage
 from library.constructor_menu import ConstructorMenu
 from library.pages.downloads_page import DownloadsPage
-from library.logger import web_logging, proxy_logging
+from library.logger import web_logging
+from common.sqllite.connection import main as proxy_logging
 
 
 class TestSuiteHw6:
@@ -48,7 +49,7 @@ class TestSuiteHw6:
         with allure.step('Delete product'):
             delete_all_products(driver)
             ProductPage.accept_product_delete(driver)
-        # proxy_logging(proxy)
+        proxy_logging(proxy)
         # web_logging(driver)
 
     @staticmethod
@@ -80,7 +81,7 @@ class TestSuiteHw6:
             products = ProductPage.find_product_name(driver)
             for product in products:
                 assert "Test product" not in product.text
-        # proxy_logging(proxy)
+        proxy_logging(proxy)
         # web_logging(driver)
 
     @staticmethod
@@ -119,7 +120,7 @@ class TestSuiteHw6:
             filter_products_by_name(driver, product_name="Edited test product")
             delete_all_products(driver)
             ProductPage.accept_product_delete(driver)
-        # proxy_logging(proxy)
+        proxy_logging(proxy)
         # web_logging(driver)
 
     @staticmethod
@@ -157,7 +158,7 @@ class TestSuiteHw6:
             filter_products_by_name(driver, product_name="Test product")
             delete_all_products(driver)
             ProductPage.accept_product_delete(driver)
-        # proxy_logging(proxy)
+        proxy_logging(proxy)
         # web_logging(driver)
 
     @staticmethod
@@ -180,7 +181,7 @@ class TestSuiteHw6:
             add_new_menu_field(driver)
         with allure.step('Check new menu field'):
             ConstructorMenu.check_computer_element(driver)
-        # proxy_logging(proxy)
+        proxy_logging(proxy)
         # web_logging(driver)
 
     @staticmethod
@@ -205,5 +206,5 @@ class TestSuiteHw6:
             DownloadsPage.select_downloaded_file(driver)
         with allure.step('Delete file'):
             DownloadsPage.delete_selected_file(driver)
-        # proxy_logging(proxy)
+        proxy_logging(proxy)
         # web_logging(driver)
