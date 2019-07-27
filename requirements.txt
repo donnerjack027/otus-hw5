@@ -1,5 +1,5 @@
 selenium == 3.141.0
-pytest == 4.4.0
+pytest == 5.0.1
 allure-pytest == 2.6.2
 allure-python-commons == 2.6.2
 mysql-connector == 2.2.9
