@@ -8,9 +8,17 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'git --version'
-                sh 'pytest --version'
+                try {
+                    sh 'pytest -s -v test_suites/test_suite_hw_26.py  --alluredir ${WORKSPACE}/allure-results'
+                }
             }
+        }
+        stage('Report') {
+            allure([
+                jdk: '',
+                reportBuildPolicy: 'ALWAYS',
+                results: [[path: 'allure-results']]
+            ])
         }
     }
 }
