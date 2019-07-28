@@ -26,59 +26,59 @@ class TestSuiteHw26:
         with allure.step("Checking temperature"):
             process.temperature_checker()
 
-    @staticmethod
-    @allure.title("Critical: Cpu info")
-    @allure.severity("critical")
-    @pytest.mark.critical
-    def test002():
-        """
-        Cpu info
-        """
-        with allure.step("Input command"):
-            process = SPUser()
-            command = "cat /proc/cpuinfo"
-            output = process.check_output(command)
-        with allure.step("Parse cpu information"):
-            process.byte_parser(output)
-            process.cpu_info_model_parser()
-        with allure.step("Checking cpu information"):
-            cpu_parameters = ['Intel(R)', 'Core(TM)', 'i3-6100']
-            process.cpu_info_checker(*cpu_parameters)
-
-    @staticmethod
-    @allure.title("Critical: enp1s0 status")
-    @allure.severity("critical")
-    @pytest.mark.critical
-    def test003():
-        """
-        enp1s0 status
-        """
-        with allure.step("Input command"):
-            process = SPUser()
-            command = "ip a | grep enp1s0"
-            output = process.check_output(command)
-        with allure.step("Parse main interface state"):
-            process.byte_parser(output)
-            process.interface_state_parser()
-        with allure.step("Checking that main interface is UP"):
-            process.interface_status_checker()
-
-    @staticmethod
-    @allure.title("Critical: Default route")
-    @allure.severity("critical")
-    @pytest.mark.critical
-    def test004():
-        """
-        Default route
-        """
-        with allure.step("Input command"):
-            process = SPUser()
-            command = "ip r | grep default"
-            output = process.check_output(command)
-        with allure.step("Parse default route data"):
-            process.byte_parser(output)
-        with allure.step("Checking default route state"):
-            process.default_route_checker(default_ip='192.168.0.254', default_method='dev')
+    # @staticmethod
+    # @allure.title("Critical: Cpu info")
+    # @allure.severity("critical")
+    # @pytest.mark.critical
+    # def test002():
+    #     """
+    #     Cpu info
+    #     """
+    #     with allure.step("Input command"):
+    #         process = SPUser()
+    #         command = "cat /proc/cpuinfo"
+    #         output = process.check_output(command)
+    #     with allure.step("Parse cpu information"):
+    #         process.byte_parser(output)
+    #         process.cpu_info_model_parser()
+    #     with allure.step("Checking cpu information"):
+    #         cpu_parameters = ['Intel(R)', 'Core(TM)', 'i3-6100']
+    #         process.cpu_info_checker(*cpu_parameters)
+    #
+    # @staticmethod
+    # @allure.title("Critical: enp1s0 status")
+    # @allure.severity("critical")
+    # @pytest.mark.critical
+    # def test003():
+    #     """
+    #     enp1s0 status
+    #     """
+    #     with allure.step("Input command"):
+    #         process = SPUser()
+    #         command = "ip a | grep enp1s0"
+    #         output = process.check_output(command)
+    #     with allure.step("Parse main interface state"):
+    #         process.byte_parser(output)
+    #         process.interface_state_parser()
+    #     with allure.step("Checking that main interface is UP"):
+    #         process.interface_status_checker()
+    #
+    # @staticmethod
+    # @allure.title("Critical: Default route")
+    # @allure.severity("critical")
+    # @pytest.mark.critical
+    # def test004():
+    #     """
+    #     Default route
+    #     """
+    #     with allure.step("Input command"):
+    #         process = SPUser()
+    #         command = "ip r | grep default"
+    #         output = process.check_output(command)
+    #     with allure.step("Parse default route data"):
+    #         process.byte_parser(output)
+    #     with allure.step("Checking default route state"):
+    #         process.default_route_checker(default_ip='192.168.0.254', default_method='dev')
 
     @staticmethod
     @allure.title("Critical: Process resource costs")
@@ -98,41 +98,41 @@ class TestSuiteHw26:
         with allure.step("Checking resource costs"):
             process.process_coast_checker(parsed_coast)
 
-    @staticmethod
-    @allure.title("Critical: Web interfaces statistic")
-    @allure.severity("critical")
-    @pytest.mark.critical
-    def test006():
-        """
-        Web interfaces statistic
-        """
-        with allure.step("Input command"):
-            process = SPUser()
-            command = "ifconfig"
-            output = process.check_output(command)
-        with allure.step("Parse ifconfig statistic"):
-            ifconfig = process.byte_parser(output)
-        with allure.step("Print and logging statistic"):
-            print(ifconfig)
-            log.info("Interface statistic: %s", ifconfig)
-
-    @staticmethod
-    @allure.title("Critical: Service status")
-    @allure.severity("critical")
-    @pytest.mark.critical
-    def test007():
-        """
-        Service status
-        """
-        with allure.step("Input command"):
-            service_name = "ssh"
-            process = SPUser()
-            command = "service %s status | grep Active", service_name
-            output = process.check_output(command)
-        with allure.step("Parse ifconfig statistic"):
-            process.byte_parser(output)
-        with allure.step("Checking service status"):
-            process.service_status_checker()
+    # @staticmethod
+    # @allure.title("Critical: Web interfaces statistic")
+    # @allure.severity("critical")
+    # @pytest.mark.critical
+    # def test006():
+    #     """
+    #     Web interfaces statistic
+    #     """
+    #     with allure.step("Input command"):
+    #         process = SPUser()
+    #         command = "ifconfig"
+    #         output = process.check_output(command)
+    #     with allure.step("Parse ifconfig statistic"):
+    #         ifconfig = process.byte_parser(output)
+    #     with allure.step("Print and logging statistic"):
+    #         print(ifconfig)
+    #         log.info("Interface statistic: %s", ifconfig)
+    #
+    # @staticmethod
+    # @allure.title("Critical: Service status")
+    # @allure.severity("critical")
+    # @pytest.mark.critical
+    # def test007():
+    #     """
+    #     Service status
+    #     """
+    #     with allure.step("Input command"):
+    #         service_name = "ssh"
+    #         process = SPUser()
+    #         command = "service %s status | grep Active", service_name
+    #         output = process.check_output(command)
+    #     with allure.step("Parse ifconfig statistic"):
+    #         process.byte_parser(output)
+    #     with allure.step("Checking service status"):
+    #         process.service_status_checker()
 
     @staticmethod
     @allure.title("Critical: Tcp/udp port status")

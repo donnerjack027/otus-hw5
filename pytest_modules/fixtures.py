@@ -17,7 +17,7 @@
 #
 # PROXY = SERVER.create_proxy()
 # PROXY.new_har()
-# 
+#
 #
 # @pytest.fixture(scope='function')
 # def start_browser(request):
