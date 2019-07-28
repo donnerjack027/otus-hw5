@@ -17,11 +17,13 @@ pipeline {
             }
         }
         stage('Report') {
-            allure([
-                jdk: '',
-                reportBuildPolicy: 'ALWAYS',
-                results: [[path: 'allure-results']]
-            ])
+            steps {
+                allure([
+                    jdk: '',
+                    reportBuildPolicy: 'ALWAYS',
+                    results: [[path: 'allure-results']]
+                ])
+            }
         }
     }
 }
