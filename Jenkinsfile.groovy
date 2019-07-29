@@ -18,7 +18,7 @@ pipeline {
                 archiveArtifacts '*.ini'
             }
         }
-        stage('Test') {
+        stage('Report') {
             steps {
             script {
                 allure([
