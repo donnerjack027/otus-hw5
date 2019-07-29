@@ -12,7 +12,7 @@ pipeline {
                 archiveArtifacts '*.ini'
             }
         }
-        stage('Copy artifacts to Nexus-repo') {
+        stage('Copy artifacts') {
             steps {
                 sh "mvn -DskipITs=true -Dsurefire.skip=true deploy"
             }
