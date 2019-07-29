@@ -15,7 +15,7 @@ pipeline {
                 sh 'pylint --disable=W1202 --output-format=parseable --reports=no module > pylint.log || echo "pylint exited with $?")'
                 sh 'cat render/pylint.log'
             }
-            step([
+            steps {
                     $class                     : 'WarningsPublisher',
                     parserConfigurations       : [[
                                                           parserName: 'PYLint',
@@ -23,7 +23,7 @@ pipeline {
                                                   ]],
                     unstableTotalAll           : '0',
                     usePreviousBuildAsReference: true
-            ])
+            }
         }
 
     }
