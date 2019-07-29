@@ -18,5 +18,18 @@ pipeline {
                 archiveArtifacts '*.ini'
             }
         }
+        stage('Test') {
+            steps {
+            script {
+                allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: 'allure-results']]
+                ])
+            }
+            }
+        }
     }
 }
