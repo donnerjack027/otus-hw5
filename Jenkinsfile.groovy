@@ -9,7 +9,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'pytest -s -v test_suites/test_suite_hw_26.py  --alluredir ${WORKSPACE}/allure-results'
-                archiveArtifacts 'target/*.war'
+                archiveArtifacts '*.log'
             }
         }
         stage('Copy artifacts to Nexus-repo') {
