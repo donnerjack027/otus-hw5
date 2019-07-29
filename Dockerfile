@@ -25,7 +25,7 @@ RUN git clone https://github.com/donnerjack027/otus-hw5.git
 RUN apt-get -y install python3-pip
 RUN pip3 install -r /home/support/otus/otus-hw5/requirements.txt
 
-RUN chmod -R +x /allure-2.12.1/bin
+RUN chmod -R +x /allure-2.6.2/bin
 
-ENV PATH="/allure-2.12.1/bin:${PATH}"
+ENV PATH="/allure-2.6.2/bin:${PATH}"
 RUN export PYTHONPATH="$PYTHONPATH:/home/support/otus/otus-hw5"
