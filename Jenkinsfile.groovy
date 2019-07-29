@@ -12,10 +12,5 @@ pipeline {
                 archiveArtifacts '*.ini'
             }
         }
-        stage('Copy artifacts') {
-            steps {
-                sh "mvn -DskipITs=true -Dsurefire.skip=true deploy"
-            }
-        }
     }
 }
