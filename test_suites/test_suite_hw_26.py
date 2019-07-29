@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
-
+"""
+homework 26
+"""
 import logging as log
 import pytest
 import allure
@@ -8,7 +10,9 @@ from library.subproc import SPUser
 
 
 class TestSuiteHw26:
-    """homework 26"""
+    """
+    homework 26
+    """
     @staticmethod
     @allure.title("Critical: Cpu workload")
     @allure.severity("critical")
@@ -44,7 +48,7 @@ class TestSuiteHw26:
     #     with allure.step("Checking cpu information"):
     #         cpu_parameters = ['Intel(R)', 'Core(TM)', 'i3-6100']
     #         process.cpu_info_checker(*cpu_parameters)
-    #
+
     # @staticmethod
     # @allure.title("Critical: enp1s0 status")
     # @allure.severity("critical")
@@ -62,7 +66,7 @@ class TestSuiteHw26:
     #         process.interface_state_parser()
     #     with allure.step("Checking that main interface is UP"):
     #         process.interface_status_checker()
-    #
+
     # @staticmethod
     # @allure.title("Critical: Default route")
     # @allure.severity("critical")
@@ -115,7 +119,7 @@ class TestSuiteHw26:
     #     with allure.step("Print and logging statistic"):
     #         print(ifconfig)
     #         log.info("Interface statistic: %s", ifconfig)
-    #
+
     # @staticmethod
     # @allure.title("Critical: Service status")
     # @allure.severity("critical")
@@ -188,7 +192,7 @@ class TestSuiteHw26:
             content = process.byte_parser(output)
         with allure.step("Printing and logging directory content"):
             print(content)
-            log.info("Directory with path '%s' has content '%s'",(directory, content))
+            log.info("Directory with path '%s' has content '%s'", (directory, content))
 
     @staticmethod
     @allure.title("Critical: Current directory")

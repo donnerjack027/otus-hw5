@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Pylint') {
                 steps {
-                    sh 'pylint test_suites/test_suite_hw_26.py'
+                    sh 'pylint --disable=E1206 test_suites/test_suite_hw_26.py'
                     archiveArtifacts 'render/pylint.log'
                 }
             }
