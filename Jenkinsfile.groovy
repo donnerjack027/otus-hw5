@@ -14,7 +14,7 @@ pipeline {
     }
     post {
         always {
-            script {
+            stage('Allure') {
                 allure([
                         includeProperties: false,
                         jdk: '',
