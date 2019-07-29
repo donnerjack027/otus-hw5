@@ -14,15 +14,13 @@ pipeline {
     }
     post {
         always {
-            stage('Allure') {
-                allure([
-                        includeProperties: false,
-                        jdk: '',
-                        properties: [],
-                        reportBuildPolicy: 'ALWAYS',
-                        results: [[path: 'target/allure-results']]
-                ])
-            }
+            allure([
+                    includeProperties: false,
+                    jdk: '',
+                    properties: [],
+                    reportBuildPolicy: 'ALWAYS',
+                    results: [[path: 'target/allure-results']]
+            ])
         }
         success {
             echo 'Successfully!'
