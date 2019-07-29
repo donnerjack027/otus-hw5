@@ -27,4 +27,24 @@ pipeline {
         }
 
     }
+    post {
+        always {
+            allure([
+                    includeProperties: false,
+                    jdk: '',
+                    properties: [],
+                    reportBuildPolicy: 'ALWAYS',
+                    results: [[path: 'allure-results']]
+            ])
+        }
+        success {
+            echo 'Successfully!'
+        }
+        failure {
+            echo 'Failed!'
+        }
+        unstable {
+            echo 'This will run only if the run was marked as unstable'
+        }
+    }
 }
