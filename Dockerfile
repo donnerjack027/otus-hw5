@@ -21,6 +21,8 @@ RUN apt-get update && \
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 RUN export JAVA_HOME
 
+RUN pip3 install -y pylint
+
 RUN git clone https://github.com/donnerjack027/otus-hw5.git
 RUN apt-get -y install python3-pip
 RUN pip3 install -r /home/support/otus/otus-hw5/requirements.txt
